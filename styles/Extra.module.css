@@ -1,0 +1,37 @@
+.activepg {
+    color: #bd9b16;
+}
+.content {
+    width: 90%;
+    margin: 0 auto;
+}
+.coolbutton {
+    background-color: #649466;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    float: right;
+    border: 5px #649466;
+    border-radius: 10px;
+}
+
+.coolbutton:hover {
+    -moz-transform: scale(1.25);
+    -webkit-transform: scale(1.25);
+    -o-transform: scale(1.25);
+    -ms-transform: scale(1.25);
+    -webkit-transform: scale(1.25);
+    transform: scale(1.25);
+    -webkit-transition: transform 1.25s ease-in-out;
+    -moz-transition:transform 1.25s ease-in-out;
+    -ms-transition:transform 1.25s ease-in-out;
+
+}
+.pastetext {
+    background-color: rgb(36, 35, 35);
+    width: 100%;
+    height: 80vh;
+}
