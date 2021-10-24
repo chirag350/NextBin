@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-require("dotenv").config()
+// To be used later.
 let transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT,

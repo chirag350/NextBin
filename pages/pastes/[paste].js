@@ -1,10 +1,11 @@
 import Head from 'next/head';
 const { decryptString } = require('../../cryptography')
-const { executeQuery } = require('../../db')
+const { executeQuery, escape } = require('../../db')
 import extra from '../../styles/Extra.module.css'
 import Script from 'next/script'
+import sanitizer from 'sanitizer';
 
-export default function Home({ decrypted, language }) {
+export default function Home({ decrypted }) {
   return (
     <html class="mainctn">
       <Head>
@@ -54,9 +55,9 @@ export default function Home({ decrypted, language }) {
 
 
 export async function getServerSideProps(context) {
-  const paste = context.params.paste;
-  const resp = await executeQuery(`SELECT * FROM pastes WHERE id = "${paste}";`)
-  if (resp == false) return {
+  const paste = sanitizer.sanitize(context.params.paste);
+  const resp = await executeQuery("SELECT * FROM pastes WHERE id = ?", [paste])
+  if (!resp || resp == false) return {
     redirect: {
       destination: '/404',
       permanent: false,
