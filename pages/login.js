@@ -45,10 +45,10 @@ export default function Home() {
                             <form method="POST" action="/api/login">
                                 <label for="emailuser">Enter your Username or Email: </label>
                                 <input type="text" name="emailuser" class="emailuser" id="emailuser" placeholder="Username or Email"></input>
-                                <br/><br />
+                                <br /><br />
                                 <label for="password">Enter your Password: </label>
                                 <input type="password" name="password" class="password" id="password" placeholder="Password"></input>
-                                <br/><br />
+                                <br /><br />
                                 <button class={extra.coolbutton} type="submit">Submit</button>
                             </form>
                         </div>
