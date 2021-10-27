@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs')
  * @return {String} The hash of the string
  */
 function hash(text) {
-    bcrypt.hashSync(text, 10)
+    return bcrypt.hashSync(text, 10)
 }
 /**
  * compares the string with a hash

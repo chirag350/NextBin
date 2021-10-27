@@ -40,7 +40,7 @@
      display: inline;
 }
 .mn-head {
-     background-color: rgb(45, 49, 45);
+     background-color: #2F3136;
      display: block;
      float: left;
      padding: 10px;
@@ -48,7 +48,7 @@
 }
 
 .ex-head {
-    background-color: rgb(45, 49, 45);
+    background-color: #2F3136;
     display: block;
     float: left;
     padding: 10px;
@@ -58,3 +58,97 @@
      color: white;
      text-decoration: none;
 }
+
+.rightbutton {
+    background-color: rgb(45, 49, 45);
+    display: block;
+    position: absolute;
+    padding: 10px;
+    right: 0;
+}
+.loginform {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 90%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 5px solid rgb(36, 35, 35);
+    border-radius: 10px;
+    width: 50%;
+    height: 30vh;
+    background-color: rgb(36, 35, 35);
+}
+.loginform input {
+    width: 95%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.loginform input:focus {
+    border: 3px solid rgb(0, 0, 0);
+  }
+
+.infoc {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    width: 90%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 5px solid rgb(104, 211, 104);
+    border-radius: 10px;
+    width: 40%;
+    height: 10vh;
+    background-color: rgb(104, 211, 104);
+}
+.errorc {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    width: 90%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 5px solid rgb(212, 53, 53);
+    border-radius: 10px;
+    width: 40%;
+    height: 10vh;
+    background-color: rgb(212, 53, 53);
+}
+
+.signupform {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 90%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 5px solid rgb(36, 35, 35);
+    border-radius: 10px;
+    width: 50%;
+    height: 42vh;
+    background-color: rgb(36, 35, 35);
+}
+.signupform input {
+    width: 95%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.signupform input:focus {
+    border: 3px solid rgb(0, 0, 0);
+  }

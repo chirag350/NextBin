@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 let transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT,
-    secure: true, // use TLS
+    secure: true,
     auth: {
         user: process.env.SMTP_USERNAME,
         pass: process.env.SMTP_PASSWORD,
@@ -19,3 +19,20 @@ transporter.verify(function (error, success) {
         console.log("Server is ready to take our messages");
     }
 });
+
+export async function sendEmail(email, username, identity) {
+    var message = {
+        from: `no-reply@${process.env.SMTP_DOMAIN}`,
+        to: email,
+        subject: `Verify your account`,
+        text: `Hello there ${username},\n\nPlease verify your email here: ${process.env.BIN_URL}/api/verify?username=${username}&token=${identity}\n\nIf you didn't register, please ignore this email.`,
+        html: `<p>Hello there ${username},\n\nPlease verify your email here: <a href="${process.env.BIN_URL}/api/verify?username=${username}&token=${identity}">Here</a>\n\nIf you didn't register, please ignore this email.</p>`
+    };
+    transporter.sendMail(message, (err, info) => {
+        if (err) {
+            return false;
+        } else {
+            return true;
+        }
+    });
+}

@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import extra from '../styles/Extra.module.css'
-export default function Home({ rand }) {
+import withSession from '../lib/session'
+export default function Home({ rand, username }) {
   return (
     <div className="mainctn">
       <Head>
@@ -29,6 +30,9 @@ export default function Home({ rand }) {
             <li class="ex-head">
               <a href="/listpastes">Pastes</a>
             </li>
+            <li class="rightbutton">
+              {username}
+            </li>
           </ul>
         </nav>
       </header>
@@ -38,12 +42,11 @@ export default function Home({ rand }) {
         <div class={extra.content}>
           <form method="POST" action="/api/upload">
             <textarea class="paste-box" id="text" name="text" placeholder={rand}></textarea>
-            <br/><br/>
+            <br /><br />
             <label for="smth-select">Choose visibility of the paste: </label>
 
             <select name="visibility" id="smth-select" required>
               <option value="public">Public</option>
-              <option value="private">Private</option>
               <option value="unlisted">Unlisted</option>
             </select>
             <a href="/">
@@ -56,10 +59,18 @@ export default function Home({ rand }) {
   )
 }
 
-export async function getServerSideProps(context) {
-  const arryofit = ["Paste your cool text here", "Dark mode is lovely", "Did you know that space is completely silent?", "What came first? The color orange or the name orange?"];
-  const rand = arryofit[Math.floor(Math.random()*arryofit.length)];
-  return {
-    props: { rand }
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  const arryofit = ["Paste your cool text here", "Dark mode is lovely", "Did you know that space is completely silent?", "What came first? The color orange or the name orange?", "Did you know that NextBin is completely open source on GitHub?"];
+  const rand = arryofit[Math.floor(Math.random() * arryofit.length)];
+  const user = req.session.get('user')
+  if (!user) return {
+    redirect: {
+      destination: '/login',
+      permanent: false,
+    },
   }
-}
+  const username = req.session.get('user').username;
+  return {
+    props: { rand, username }
+  }
+})

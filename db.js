@@ -9,9 +9,10 @@ export const db = mysql({
   },
 })
 async function init() {
-  await db.query(`CREATE TABLE IF NOT EXISTS pastes(id VARCHAR(255), content TEXT);`)
-  // FOR LATER USE await db.query(`CREATE TABLE IF NOT EXISTS users(username VARCHAR(255), email VARCHAR(255), password VARCHAR(255), identity VARCHAR(255), is_verified INTEGER)`)
+  await db.query(`CREATE TABLE IF NOT EXISTS pastes(id VARCHAR(255), content TEXT, visibility VARCHAR(255), owner VARCHAR(255));`)
+  await db.query(`CREATE TABLE IF NOT EXISTS users(username VARCHAR(255), email VARCHAR(255), password VARCHAR(255), identity VARCHAR(255), is_verified INTEGER)`)
 }
+init()
 export async function executeQuery(q, values) {
   try {
     const results = await db.query(q, values)

@@ -1,16 +1,16 @@
 import Head from 'next/head';
 const { decryptString } = require('../../cryptography')
-const { executeQuery, escape } = require('../../db')
+const { executeQuery } = require('../../db')
+import withSession from '../../lib/session'
 import extra from '../../styles/Extra.module.css'
-import Script from 'next/script'
 import sanitizer from 'sanitizer';
 
-export default function Home({ decrypted }) {
+export default function Home({ decrypted, username, authorname }) {
   return (
     <html class="mainctn">
       <Head>
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-        <Script src="https://kit.fontawesome.com/5007b5f4b7.js" crossOrigin="anonymous" />
+        <script src="https://kit.fontawesome.com/5007b5f4b7.js" crossOrigin="anonymous"></script>
         <title>NextBin</title>
         <meta property="og:site_name" content="NextBin" />
         <meta property="og:title" content="NextBin" />
@@ -20,10 +20,10 @@ export default function Home({ decrypted }) {
         <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
       </Head>
       <header>
-        <nav>
+        <nav class="navbar">
           <ul>
             <li class="mn-head">
-              <a class={extra.activepg} href="/"> Home </a>
+              <a href="/"> Home </a>
             </li>
             <li class="mn-head">
               <a href="/login">Login</a>
@@ -34,6 +34,9 @@ export default function Home({ decrypted }) {
             <li class="ex-head">
               <a href="/listpastes">Pastes</a>
             </li>
+            <li class="rightbutton">
+              {username}
+            </li>
           </ul>
         </nav>
       </header>
@@ -41,6 +44,7 @@ export default function Home({ decrypted }) {
 
       <body>
         <br /><br /><br /><br /><br />
+        <p>By {authorname}</p>
         <div class={extra.pastetext}>
           <pre>
             <code class="prettyprint">
@@ -54,8 +58,8 @@ export default function Home({ decrypted }) {
 }
 
 
-export async function getServerSideProps(context) {
-  const paste = sanitizer.sanitize(context.params.paste);
+export const getServerSideProps = withSession(async function ({ req, res, params }) {
+  const paste = sanitizer.sanitize(params.paste);
   const resp = await executeQuery("SELECT * FROM pastes WHERE id = ?", [paste])
   if (!resp || resp == false) return {
     redirect: {
@@ -65,7 +69,12 @@ export async function getServerSideProps(context) {
   }
   let enct = resp[0].content;
   let decrypted = decryptString(enct);
-  return {
-    props: { decrypted },
+  let username = "Not Logged In"
+  let authorname = resp[0].owner;
+  if (req.session && req.session.get('user')) {
+    username = req.session.get('user').username;
   }
-}
+  return {
+    props: { decrypted, username, authorname },
+  }
+})
