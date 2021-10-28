@@ -45,9 +45,7 @@ export default function Home({ username, arr }) {
                 <br /><br /><br /><br /><br />
                 <div class="pasteslist">
                     <ul>
-                        {arr.map(function (d, e) {
-                            return (<li key={e}><a href={d.url}>{d.id}</a> by {d.owner}</li>)
-                        })}
+                    {arr.map(h => <li><a href={h.url}>{h.id}</a> by {h.owner}</li>)}
                     </ul>
                 </div>
             </body>
@@ -64,10 +62,8 @@ export const getServerSideProps = withSession(async function ({ req, res, params
             permanent: false,
         },
     }
-    let arr = null;
-    resp.map(e => {
-        arr = [{"id": e.id, "owner": e.owner, "url": `/pastes/${e.id}`}]
-    })
+    let arrt = null;
+    const arr = resp.map(e =>  ({ "id": e.id, "owner": e.owner, "url": `/pastes/${e.id}` }))
     let username = "Not Logged In"
     if (req.session && req.session.get('user')) {
         username = req.session.get('user').username;
