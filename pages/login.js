@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import extra from '../styles/Extra.module.css'
 import withSession from '../lib/session'
-export default function Home() {
+import HCaptcha from '@hcaptcha/react-hcaptcha';
+export default function Home({ siteKey }) {
     return (
         <div className="mainctn">
             <Head>
@@ -44,11 +45,17 @@ export default function Home() {
                         <div class="loginform">
                             <form method="POST" action="/api/login">
                                 <label for="emailuser">Enter your Username or Email: </label>
-                                <input type="text" name="emailuser" class="emailuser" id="emailuser" placeholder="Username or Email"></input>
+                                <input type="text" name="emailuser" class="emailuser" id="emailuser" placeholder="Username or Email" required></input>
                                 <br /><br />
                                 <label for="password">Enter your Password: </label>
-                                <input type="password" name="password" class="password" id="password" placeholder="Password"></input>
+                                <input type="password" name="password" class="password" id="password" placeholder="Password" required></input>
                                 <br /><br />
+                                <div class="hcaptcha">
+                                    <HCaptcha
+                                        sitekey={siteKey}
+                                        onVerify={(token, ekey) => handleVerificationSuccess(token, ekey)}
+                                    />
+                                </div>
                                 <button class={extra.coolbutton} type="submit">Submit</button>
                             </form>
                         </div>
@@ -67,7 +74,8 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
             permanent: false,
         },
     }
+    const siteKey = process.env.HCAPTCHA_SITE_KEY;
     return {
-        props: {}
+        props: { siteKey },
     }
 })

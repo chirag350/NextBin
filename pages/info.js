@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import extra from '../styles/Extra.module.css'
 import withSession from '../lib/session'
-export default function Home({ username, classn, contentt }) {
+export default function Home({ username, contentt }) {
     return (
         <div className="mainctn">
             <Head>

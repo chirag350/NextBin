@@ -77,7 +77,6 @@
     border: 5px solid rgb(36, 35, 35);
     border-radius: 10px;
     width: 50%;
-    height: 30vh;
     background-color: rgb(36, 35, 35);
 }
 .loginform input {
@@ -135,7 +134,7 @@
     border: 5px solid rgb(36, 35, 35);
     border-radius: 10px;
     width: 50%;
-    height: 42vh;
+
     background-color: rgb(36, 35, 35);
 }
 .signupform input {
@@ -153,3 +152,40 @@
 .signupform input:focus {
     border: 3px solid rgb(0, 0, 0);
   }
+
+.hcaptcha {
+    text-align: left;
+    margin-left: 20px;
+}
+
+.listofpastesli {
+    background-color: rgb(53, 52, 51);
+    list-style: none;
+    width: 60%;
+    padding: 20px;
+    margin: 20px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    border: 5px solid rgb(53, 52, 51);
+    border-radius: 10px;
+}
+
+.listofpastesli:hover {
+    background-color: rgb(39, 38, 38);
+    padding: 30px;
+    cursor: pointer;
+}
+
+.authorofpaste {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.usericonimg {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}

@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import extra from '../styles/Extra.module.css'
 import withSession from '../lib/session'
-export default function Home() {
+import HCaptcha from '@hcaptcha/react-hcaptcha';
+export default function Home({ siteKey }) {
     return (
         <div className="mainctn">
             <Head>
@@ -44,14 +45,20 @@ export default function Home() {
                         <div class="signupform">
                             <form method="POST" action="/api/signup">
                                 <label for="username">Enter your Username: </label>
-                                <input type="text" name="username" class="username" id="username" placeholder="Username"></input>
-                                <br/><br />
+                                <input type="text" name="username" class="username" id="username" placeholder="Username" required></input>
+                                <br /><br />
                                 <label for="email">Enter your Email: </label>
-                                <input type="email" name="email" class="email" id="email" placeholder="Email"></input>
-                                <br/><br />
+                                <input type="email" name="email" class="email" id="email" placeholder="Email" required></input>
+                                <br /><br />
                                 <label for="password">Enter your Password: </label>
-                                <input type="password" name="password" class="password" id="password" placeholder="Password" minlength="6" maxlength="128"></input>
-                                <br/><br />
+                                <input type="password" name="password" class="password" id="password" placeholder="Password" minlength="6" maxlength="128" required></input>
+                                <br /><br />
+                                <div class="hcaptcha">
+                                    <HCaptcha
+                                        sitekey={siteKey}
+                                        onVerify={(token, ekey) => handleVerificationSuccess(token, ekey)}
+                                    />
+                                </div>
                                 <button class={extra.coolbutton} type="submit">Submit</button>
                             </form>
                         </div>
@@ -70,7 +77,8 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
             permanent: false,
         },
     }
+    const siteKey = process.env.HCAPTCHA_SITE_KEY;
     return {
-        props: {}
+        props: { siteKey }
     }
 })

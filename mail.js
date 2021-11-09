@@ -1,5 +1,4 @@
 const nodemailer = require('nodemailer');
-// To be used later.
 let transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT,
@@ -19,7 +18,13 @@ transporter.verify(function (error, success) {
         console.log("Server is ready to take our messages");
     }
 });
-
+/**
+ * Sends the verification email.
+ * @param {String} email 
+ * @param {String} username 
+ * @param {String} identity 
+ * @returns {Boolean} true if the email was sent, false otherwise.
+ */
 export async function sendEmail(email, username, identity) {
     var message = {
         from: `no-reply@${process.env.SMTP_DOMAIN}`,

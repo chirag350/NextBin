@@ -45,7 +45,7 @@ export default function Home({ username, arr }) {
                 <br /><br /><br /><br /><br />
                 <div class="pasteslist">
                     <ul>
-                    {arr.map(h => <li><a href={h.url}>{h.id}</a> by {h.owner}</li>)}
+                    {arr.map(h => <a href={h.url}><div class="listofpastesli"><li key="uniqueId1">{h.id} <span class="authorofpaste"> <img class="usericonimg" src="/toppng.com-usericon.png"></img>{h.owner}</span></li></div></a>)}
                     </ul>
                 </div>
             </body>
