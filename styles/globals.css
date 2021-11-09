@@ -153,11 +153,6 @@
     border: 3px solid rgb(0, 0, 0);
   }
 
-.hcaptcha {
-    text-align: left;
-    margin-left: 20px;
-}
-
 .listofpastesli {
     background-color: rgb(53, 52, 51);
     list-style: none;

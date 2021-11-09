@@ -50,12 +50,6 @@ export default function Home({ siteKey }) {
                                 <label for="password">Enter your Password: </label>
                                 <input type="password" name="password" class="password" id="password" placeholder="Password" required></input>
                                 <br /><br />
-                                <div class="hcaptcha">
-                                    <HCaptcha
-                                        sitekey={siteKey}
-                                        onVerify={(token, ekey) => handleVerificationSuccess(token, ekey)}
-                                    />
-                                </div>
                                 <button class={extra.coolbutton} type="submit">Submit</button>
                             </form>
                         </div>

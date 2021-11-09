@@ -46,19 +46,13 @@ export default function Home({ siteKey }) {
                             <form method="POST" action="/api/signup">
                                 <label for="username">Enter your Username: </label>
                                 <input type="text" name="username" class="username" id="username" placeholder="Username" required></input>
-                                <br /><br />
+                                <br/><br />
                                 <label for="email">Enter your Email: </label>
                                 <input type="email" name="email" class="email" id="email" placeholder="Email" required></input>
-                                <br /><br />
+                                <br/><br />
                                 <label for="password">Enter your Password: </label>
                                 <input type="password" name="password" class="password" id="password" placeholder="Password" minlength="6" maxlength="128" required></input>
-                                <br /><br />
-                                <div class="hcaptcha">
-                                    <HCaptcha
-                                        sitekey={siteKey}
-                                        onVerify={(token, ekey) => handleVerificationSuccess(token, ekey)}
-                                    />
-                                </div>
+                                <br/><br />
                                 <button class={extra.coolbutton} type="submit">Submit</button>
                             </form>
                         </div>
