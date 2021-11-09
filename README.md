@@ -9,6 +9,7 @@ Then open `.env.local` with nano or vi, vim or your favorite editor and fill in 
 Then run `npm install` to install the dependencies  
 Then run `npm run build` to build  
 Then run`npm start` to start  
+or `pm2 start --name NextBin npm -- start` to run in background 
 
 For SSL do the following:  
 `systemctl start nginx`  
