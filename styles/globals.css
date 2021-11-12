@@ -156,12 +156,11 @@
 .listofpastesli {
     background-color: rgb(53, 52, 51);
     list-style: none;
-    width: 60%;
+    width: 80%;
     padding: 20px;
     margin: 20px;
     display: block;
-    margin-right: auto;
-    margin-left: auto;
+    align-items: center;
     border: 5px solid rgb(53, 52, 51);
     border-radius: 10px;
 }
